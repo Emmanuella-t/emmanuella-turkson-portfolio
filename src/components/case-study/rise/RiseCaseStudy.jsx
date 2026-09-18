@@ -550,7 +550,7 @@ export default function RiseCaseStudy() {
       </section>
 
       {/* Design Process */}
-      <section className="overflow-x-hidden py-20 sm:py-28" style={{ backgroundColor: "#F7F3EA" }}>
+      <section className="py-20 sm:py-28" style={{ backgroundColor: "#F7F3EA" }}>
         <Shell>
           <Reveal className="mx-auto max-w-2xl text-center sm:text-left">
             <Eyebrow>DESIGN PROCESS</Eyebrow>
@@ -562,29 +562,9 @@ export default function RiseCaseStudy() {
             </p>
           </Reveal>
         </Shell>
-        <div className="mt-12 sm:mt-16 lg:mt-20">
+        <div className="mt-12 min-w-0 sm:mt-16 lg:mt-20">
           <RiseDesignProcess />
         </div>
-      </section>
-
-      {/* Editorial detail — once */}
-      <section className="py-16 sm:py-20">
-        <Reveal className="mx-auto flex w-full max-w-[1536px] justify-center px-5">
-          <figure>
-            <img
-              src={`${ASSETS}/05_ai_guidance/rise-editorial-ui-closeups.jpg`}
-              alt="Editorial close-ups of Rise guidance, utilization, points, and Resource Stack interface details"
-              width={3072}
-              height={2048}
-              loading="lazy"
-              decoding="async"
-              className="h-auto w-full object-contain"
-            />
-            <figcaption className="mt-4 font-mono text-[11px] uppercase tracking-[0.16em]" style={{ color: R.mute }}>
-              Detail — guidance, health, points, and support in the same visual system
-            </figcaption>
-          </figure>
-        </Reveal>
       </section>
 
       {/* 11 User journey */}
