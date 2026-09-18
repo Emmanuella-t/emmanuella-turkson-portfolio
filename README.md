@@ -1,4 +1,4 @@
-# Emmanuella Turkson — UX / Product Design Portfolio
+# Emmanuella Turkson - UX / Product Design Portfolio
 
 A collection of product design and UX case studies exploring how research, systems thinking, interaction design, and technology can turn complex problems into clear, usable experiences.
 
