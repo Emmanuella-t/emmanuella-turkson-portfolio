@@ -1,0 +1,242 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Cormorant+SC:wght@400;600&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Love+Ya+Like+A+Sister&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* :root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+} */
+
+
+
+@layer base {
+  :root {
+    --background: #1c0a08;
+    --foreground: #ffedad;
+    --primary: #bc7821;
+    --primary-foreground: #1c0a08;
+    --secondary: #2a1208;
+    --secondary-foreground: #ffedad;
+    --muted: #3a1a10;
+    --muted-foreground: #ffecaa;
+    --accent: #fc13a1;
+    --accent-foreground: #ffedad;
+    --border: #3a1a10;
+    --input: #3a1a10;
+    --ring: #bc7821;
+    --card: #240e08;
+    --card-foreground: #ffedad;
+    --popover: #240e08;
+    --popover-foreground: #ffedad;
+    --destructive: #dc2626;
+    --destructive-foreground: #ffedad;
+    --radius: 0.75rem;
+    --chart-1: #bc7821;
+    --chart-2: #fc13a1;
+    --chart-3: #ffedad;
+    --chart-4: #3a1a10;
+    --chart-5: #2a1208;
+    --sidebar-background: #1c0a08;
+    --sidebar-foreground: #ffedad;
+    --sidebar-primary: #bc7821;
+    --sidebar-primary-foreground: #1c0a08;
+    --sidebar-accent: #2a1208;
+    --sidebar-accent-foreground: #ffedad;
+    --sidebar-border: #3a1a10;
+    --sidebar-ring: #bc7821;
+
+    --font-display: 'Cormorant Garamond', serif;
+    --font-display-sc: 'Cormorant SC', serif;
+    --font-body: 'DM Sans', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --font-hero-name: 'Love Ya Like A Sister', cursive;
+  }
+  .dark {
+    --background: #1c0a08;
+    --foreground: #ffedad;
+    --primary: #bc7821;
+    --primary-foreground: #1c0a08;
+    --secondary: #2a1208;
+    --secondary-foreground: #ffedad;
+    --muted: #3a1a10;
+    --muted-foreground: #ffecaa;
+    --accent: #fc13a1;
+    --accent-foreground: #ffedad;
+    --border: #3a1a10;
+    --input: #3a1a10;
+    --ring: #bc7821;
+    --card: #240e08;
+    --card-foreground: #ffedad;
+    --popover: #240e08;
+    --popover-foreground: #ffedad;
+    --destructive: #dc2626;
+    --destructive-foreground: #ffedad;
+    --chart-1: #bc7821;
+    --chart-2: #fc13a1;
+    --chart-3: #ffedad;
+    --chart-4: #3a1a10;
+    --chart-5: #2a1208;
+    --sidebar-background: #1c0a08;
+    --sidebar-foreground: #ffedad;
+    --sidebar-primary: #bc7821;
+    --sidebar-primary-foreground: #1c0a08;
+    --sidebar-accent: #2a1208;
+    --sidebar-accent-foreground: #ffedad;
+    --sidebar-border: #3a1a10;
+    --sidebar-ring: #bc7821;
+
+    --font-display: 'Cormorant Garamond', serif;
+    --font-display-sc: 'Cormorant SC', serif;
+    --font-body: 'DM Sans', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --font-hero-name: 'Love Ya Like A Sister', cursive;
+  }
+}
+
+
+
+@layer base {
+  /*
+   * Case-study design tokens.
+   * Channels are space-separated RGB so Tailwind's `cs-*` colors can apply alpha.
+   * Default values reproduce the warm editorial palette (Zoom / Rise / Career Match).
+   */
+  :root {
+    --cs-bg: 255 255 255;
+    --cs-alt: 255 237 218;      /* #FFEDDA cream */
+    --cs-ink: 64 18 22;         /* #401216 */
+    --cs-soft: 99 51 58;        /* #63333A */
+    --cs-muted: 156 121 97;     /* #9C7961 */
+    --cs-border: 213 188 173;   /* #D5BCAD */
+    --cs-accent: 45 140 255;    /* #2D8CFF */
+    --cs-ink-bg: 64 18 22;      /* #401216 */
+    --cs-onink: 255 237 218;    /* #FFEDDA */
+    --cs-card: 255 255 255;
+
+    --cs-shadow: 0 20px 50px -24px rgba(64, 18, 22, 0.35);
+  }
+
+  /* MedEdge brand system — deep navy, cobalt, white, cool-gray (from the hero). */
+  [data-cs-theme="mededge"] {
+    --cs-bg: 255 255 255;
+    --cs-alt: 240 244 250;      /* cool gray #F0F4FA */
+    --cs-ink: 10 26 58;         /* deep navy #0A1A3A */
+    --cs-soft: 15 40 90;        /* navy #0F285A */
+    --cs-muted: 37 99 235;      /* cobalt #2563EB */
+    --cs-border: 203 213 225;   /* slate-300 #CBD5E1 */
+    --cs-accent: 37 99 235;     /* cobalt #2563EB */
+    --cs-ink-bg: 6 16 42;       /* hero navy #06102A */
+    --cs-onink: 236 242 255;    /* #ECF2FF */
+    --cs-card: 255 255 255;
+
+    --cs-shadow: 0 26px 60px -30px rgba(2, 20, 60, 0.42);
+  }
+}
+
+/*
+ * MedEdge typography rule: one elegant serif moment lives in the hero;
+ * every section heading below it switches to the clean sans (DM Sans),
+ * matching the brand system requested for the case study.
+ */
+@layer utilities {
+  [data-cs-theme="mededge"] .cs-section .font-display {
+    font-family: var(--font-body);
+    letter-spacing: -0.015em;
+  }
+
+  /* Opt-in serif for major display moments inside MedEdge sections (e.g. Challenge headline). */
+  [data-cs-theme="mededge"] .cs-section .cs-display-serif {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    overflow-x: clip;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    overflow-x: clip;
+    min-width: 0;
+  }
+
+  img,
+  video {
+    max-width: 100%;
+    height: auto;
+  }
+}

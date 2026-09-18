@@ -1,0 +1,59 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+dist-ssr/
+build/
+out/
+.next/
+.vercel/
+coverage/
+.cache/
+
+# Environment
+.env
+.env.*
+.env.local
+.env.production
+!.env.example
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Local / editor
+*.local
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Nested app caches accidentally copied into public/
+**/.next/
+**/node_modules/
+.pytest_cache/
+.ruff_cache/
+
+# Local audit dumps (should never ship)
+demo-assets/
+reference-frames/
+reference-videos/
+tmp-*/
+tmp-*
+
+# OS
+Thumbs.db
+Desktop.ini
+
+.cursor/
