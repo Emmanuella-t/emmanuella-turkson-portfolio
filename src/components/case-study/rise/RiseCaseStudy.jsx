@@ -8,6 +8,8 @@ import study from "@/data/caseStudies/rise";
 import RiseUserJourney from "@/components/case-study/rise/RiseUserJourney";
 import RiseLowFi from "@/components/case-study/rise/RiseLowFi";
 import RiseUserFlows from "@/components/case-study/rise/RiseUserFlows";
+import RiseHighFi from "@/components/case-study/rise/RiseHighFi";
+import RiseDesignProcess from "@/components/case-study/rise/RiseDesignProcess";
 import RiseVisualDirection from "@/components/case-study/rise/RiseVisualDirection";
 
 const EASE = [0.22, 1, 0.36, 1];
@@ -56,46 +58,6 @@ function Eyebrow({ children, light = false }) {
     >
       {children}
     </p>
-  );
-}
-
-function ArtifactPlaceholder({
-  label,
-  note,
-  tags,
-  className = "min-h-[16rem] sm:min-h-[22rem]",
-}) {
-  return (
-    <div
-      className={`flex w-full flex-col justify-between border px-6 py-8 sm:px-8 sm:py-10 ${className}`}
-      style={{ backgroundColor: "#F3EFE8", borderColor: R.line }}
-      role="img"
-      aria-label={label}
-    >
-      <div className="flex items-center gap-3">
-        <span className="h-1.5 w-1.5 shrink-0" style={{ backgroundColor: R.yellow }} aria-hidden />
-        <p className="font-mono text-[10px] uppercase tracking-[0.18em]" style={{ color: R.mute }}>
-          {label}
-        </p>
-      </div>
-      {tags ? (
-        <ul className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          {tags.map((tag) => (
-            <li
-              key={tag}
-              className="border-t pt-3 font-mono text-[10px] uppercase tracking-[0.14em]"
-              style={{ borderColor: R.line, color: R.ink }}
-            >
-              {tag}
-            </li>
-          ))}
-        </ul>
-      ) : note ? (
-        <p className="mt-10 font-mono text-[10px] uppercase tracking-[0.16em] sm:mt-auto" style={{ color: R.mute }}>
-          {note}
-        </p>
-      ) : null}
-    </div>
   );
 }
 
@@ -587,23 +549,22 @@ export default function RiseCaseStudy() {
         </Shell>
       </section>
 
-      {/* Design Process — placeholder for the final process artifact */}
-      <section className="bg-white py-20 sm:py-28">
+      {/* Design Process */}
+      <section className="overflow-x-hidden py-20 sm:py-28" style={{ backgroundColor: "#F7F3EA" }}>
         <Shell>
-          <Reveal className="max-w-3xl">
-            <Eyebrow>Design process</Eyebrow>
+          <Reveal className="mx-auto max-w-2xl text-center sm:text-left">
+            <Eyebrow>DESIGN PROCESS</Eyebrow>
             <h2 className="mt-5 font-display text-[clamp(2.1rem,4.4vw,3.6rem)] font-semibold leading-[1.05]">
-              From problem framing to product decisions
+              From problem to product
             </h2>
-          </Reveal>
-          <Reveal className="mt-12">
-            <ArtifactPlaceholder
-              label="Placeholder — Design process"
-              note="Discover → Define → Map → Sketch → Design → Prototype → Refine"
-              className="min-h-[18rem] sm:min-h-[24rem] lg:aspect-[21/8] lg:min-h-0"
-            />
+            <p className="mt-5 text-base leading-relaxed sm:text-lg" style={{ color: R.mute }}>
+              A seven-stage process that moved Rise from understanding the student problem to a clearer, more connected product experience.
+            </p>
           </Reveal>
         </Shell>
+        <div className="mt-12 sm:mt-16 lg:mt-20">
+          <RiseDesignProcess />
+        </div>
       </section>
 
       {/* Editorial detail — once */}
@@ -700,40 +661,21 @@ export default function RiseCaseStudy() {
       </section>
 
       {/* 14 High-fi */}
-      <section className="py-20 sm:py-28">
+      <section className="py-20 sm:py-28" style={{ backgroundColor: "#F7F3EA" }}>
         <Shell>
-          <Reveal className="max-w-3xl">
+          <Reveal className="max-w-2xl">
             <Eyebrow>14 — High-fidelity design</Eyebrow>
             <h2 className="mt-5 font-display text-[clamp(2.1rem,4.4vw,3.6rem)] font-semibold leading-[1.05]">
-              Turning the system into a clear student experience.
+              High-Fidelity Design
             </h2>
-            <p className="mt-6 text-base leading-relaxed" style={{ color: R.mute }}>
-              The high-fidelity work is the product compositions already on this page — not a second gallery of the same phones. They group by purpose.
+            <p className="mt-5 text-base leading-relaxed sm:text-lg" style={{ color: R.mute }}>
+              Turning the Rise system into a clear, responsive student experience.
             </p>
           </Reveal>
-          <Reveal className="mt-12">
-            <ArtifactPlaceholder
-              label="Placeholder — High-fidelity screen collection"
-              tags={["Foundation", "Guidance", "Progress", "Support"]}
-              className="min-h-[20rem] sm:min-h-[26rem] lg:aspect-[16/8] lg:min-h-0"
-            />
-          </Reveal>
-          <div className="mt-14 grid gap-px bg-[#E6E0D8] sm:grid-cols-2">
-            {[
-              ["Foundation", "A card and a first screen that explain a starting point, without invented terms."],
-              ["Guidance", "A review state that shows context, consequence, an alternative, and an open choice."],
-              ["Progress", "Healthier and more strained states, readable before a statement arrives."],
-              ["Support", "Resources attached to the situation, not a generic help dump."],
-            ].map(([title, body]) => (
-              <div key={title} className="bg-[#F6F3EE] p-8 sm:p-10">
-                <h3 className="font-mono text-[11px] uppercase tracking-[0.18em]" style={{ color: R.mute }}>
-                  {title}
-                </h3>
-                <p className="mt-4 font-display text-2xl font-semibold leading-snug sm:text-3xl">{body}</p>
-              </div>
-            ))}
-          </div>
         </Shell>
+        <div className="mx-auto mt-12 w-[min(100%,95vw)] max-w-[1200px] px-4 sm:mt-16 sm:px-6 lg:mt-20 lg:px-8">
+          <RiseHighFi />
+        </div>
       </section>
 
       {/* 15 Core experience */}
@@ -837,46 +779,102 @@ export default function RiseCaseStudy() {
       </section>
 
       {/* 19 Pitch + contribution */}
-      <section className="bg-white py-20 sm:py-28">
-        <Shell className="grid gap-14 lg:grid-cols-12">
-          <Reveal className="lg:col-span-5">
+      <section className="py-20 sm:py-28" style={{ backgroundColor: "#F7F3EA" }}>
+        <Shell>
+          <Reveal className="max-w-3xl">
             <Eyebrow>19 — Pitch outcome and my contribution</Eyebrow>
             <h2 className="mt-5 font-display text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-[1.05]">
-              Team concept. My UX work sits inside it.
+              Pitch Outcome + My Contribution
             </h2>
-            <div className="mt-6 space-y-4 text-base leading-relaxed" style={{ color: R.mute }}>
-              <p>
-                Rise was developed as team competition work for Synchrony. The source folder includes the pitch deck and product visuals. It does not include award results or event photography, so none are shown.
-              </p>
-              <p>
-                I was the UX/UI designer on a three-person team, with James-Owolabi Olaoluwa (AI research and software) and Benedicta Nzekwe (business analysis). I do not claim sole ownership of the concept, the business model, or the engineering.
-              </p>
-              <p>
-                My contribution is the student-experience argument: when guidance appears, how an alternative is offered without becoming a command, and how progress and support stay visible without taking the final decision.
-              </p>
+            <p className="mt-5 text-base leading-relaxed sm:text-lg" style={{ color: R.mute }}>
+              Rise was pitched as team competition work for Synchrony. These photos are from pitch day with the three-person team.
+            </p>
+          </Reveal>
+
+          <Reveal className="mt-10 sm:mt-12">
+            <div className="flex flex-col gap-3 sm:gap-4 lg:flex-row lg:items-stretch lg:gap-4">
+              <figure
+                className="overflow-hidden border bg-[#F3EFE8] lg:w-[58%] lg:shrink-0"
+                style={{ borderColor: R.line, borderRadius: 2 }}
+              >
+                <img
+                  src="/case-studies/synchrony_rise_case_stucy/competition_evidence/64fdf5c2-ee5c-43fb-a032-7cd8f6dd47da.jpeg"
+                  alt="Rise team presenting the pitch, with the Five Components slide on screen"
+                  width={5120}
+                  height={3840}
+                  loading="lazy"
+                  decoding="async"
+                  className="h-auto w-full object-contain"
+                />
+              </figure>
+              <div className="flex flex-col gap-3 sm:gap-4 lg:min-w-0 lg:flex-1">
+                {[
+                  {
+                    src: "284baca8-0135-4b28-b9c3-49a32b2d705a.jpeg",
+                    alt: "Rise team with a Synchrony representative after the pitch",
+                    w: 1024,
+                    h: 768,
+                  },
+                  {
+                    src: "1179a4b4-3c06-4dca-82bf-0493dae7c624.jpeg",
+                    alt: "Rise team in matching yellow sweatshirts after the competition",
+                    w: 4032,
+                    h: 3024,
+                  },
+                  {
+                    src: "93ecafc6-f040-4b90-9c22-c430165866bb.jpeg",
+                    alt: "Rise team selfie at the Synchrony competition venue",
+                    w: 4032,
+                    h: 3024,
+                  },
+                ].map((shot) => (
+                  <figure
+                    key={shot.src}
+                    className="overflow-hidden border bg-[#F3EFE8]"
+                    style={{ borderColor: R.line, borderRadius: 2 }}
+                  >
+                    <img
+                      src={`/case-studies/synchrony_rise_case_stucy/competition_evidence/${shot.src}`}
+                      alt={shot.alt}
+                      width={shot.w}
+                      height={shot.h}
+                      loading="lazy"
+                      decoding="async"
+                      className="h-auto w-full object-contain"
+                    />
+                  </figure>
+                ))}
+              </div>
             </div>
           </Reveal>
-          <Reveal className="lg:col-span-7" delay={0.05}>
-            <figure>
-              <img
-                src={TEAM_SLIDE}
-                alt="Team slide naming James-Owolabi Olaoluwa, Benedicta Nzekwe, and Emmanuella Turkson as UX/UI Designer"
-                width={1920}
-                height={1080}
-                loading="lazy"
-                className="h-auto w-full object-contain"
-              />
-              <figcaption className="mt-3 text-sm" style={{ color: R.mute }}>
-                Team competition slide. Not a measured outcome.
-              </figcaption>
-            </figure>
-          </Reveal>
-          <Reveal className="lg:col-span-12">
-            <ArtifactPlaceholder
-              label="Placeholder — Pitch / competition evidence"
-              className="min-h-[12rem] sm:min-h-[16rem]"
-            />
-          </Reveal>
+
+          <div className="mt-12 grid gap-12 lg:mt-16 lg:grid-cols-12 lg:gap-14">
+            <Reveal className="lg:col-span-5">
+              <div className="space-y-4 text-base leading-relaxed" style={{ color: R.mute }}>
+                <p>
+                  I was the UX/UI designer on a three-person team, with James-Owolabi Olaoluwa (AI research and software) and Benedicta Nzekwe (business analysis). I do not claim sole ownership of the concept, the business model, or the engineering.
+                </p>
+                <p>
+                  My contribution is the student-experience argument: when guidance appears, how an alternative is offered without becoming a command, and how progress and support stay visible without taking the final decision.
+                </p>
+              </div>
+            </Reveal>
+            <Reveal className="lg:col-span-7" delay={0.05}>
+              <figure>
+                <img
+                  src={TEAM_SLIDE}
+                  alt="Team slide naming James-Owolabi Olaoluwa, Benedicta Nzekwe, and Emmanuella Turkson as UX/UI Designer"
+                  width={1920}
+                  height={1080}
+                  loading="lazy"
+                  className="h-auto w-full object-contain"
+                />
+                <figcaption className="mt-3 text-sm" style={{ color: R.mute }}>
+                  Team competition slide. Not a measured outcome.
+                </figcaption>
+              </figure>
+            </Reveal>
+          </div>
         </Shell>
       </section>
 
