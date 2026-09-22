@@ -8,15 +8,77 @@ const R = {
   mute: "#5C6570",
   line: "#E6E0D8",
   ivory: "#F7F3EA",
-  cream: "#F3EFE8",
 };
 
 const ROOT =
-  "/case-studies/synchrony_rise_case_stucy/rise-by-synchrony-high-fi-screens";
+  "/case-studies/synchrony_rise_case_stucy/new-rise-highfi-screens";
 
-function src(path) {
-  return encodeURI(`${ROOT}/${path}`);
-}
+const FIGMA_URL =
+  "https://www.figma.com/design/uW1I6lQcPOtBQZ3BZemPPe/Rise-by-Synchrony---highfi-screens?node-id=142-2&p=f&t=KiaoaEYNlai5RDQd-0";
+
+/** Shared phone pair rhythm — one width, gap, and stagger for all moments. */
+const PHONE =
+  "w-full max-w-[19rem] sm:max-w-[21rem] lg:max-w-[23rem] xl:max-w-[24.5rem]";
+const PHONE_GAP = "gap-8 sm:gap-5 lg:gap-6";
+const PHONE_STAGGER = "lg:mt-12";
+const LABEL_GAP = "mb-2.5";
+
+const MOMENTS = [
+  {
+    id: "01",
+    title: "Entering the Rise experience",
+    body: "Welcome sets the tone. Home makes the next step clear.",
+    reverse: false,
+    screens: [
+      {
+        file: "01-welcome.png",
+        label: "Welcome",
+        alt: "Rise welcome screen — Your next chapter starts here",
+      },
+      {
+        file: "02-home-dashboard.png",
+        label: "Home Dashboard",
+        alt: "Rise home dashboard — next action, progress, and tools",
+      },
+    ],
+  },
+  {
+    id: "02",
+    title: "Making better financial decisions",
+    body: "The Foundation Card anchors starting credit. Rise Assistant steps in when a choice still matters.",
+    reverse: true,
+    screens: [
+      {
+        file: "03-foundation-card.png",
+        label: "Foundation Card",
+        alt: "Foundation Card screen — starting point and card status",
+      },
+      {
+        file: "04-ai-guidance.png",
+        label: "Rise Assistant",
+        alt: "Rise Assistant — guidance before a purchase decision",
+      },
+    ],
+  },
+  {
+    id: "03",
+    title: "Building progress over time",
+    body: "Rise Points make healthier habits visible. The Resource Stack connects support to the moment.",
+    reverse: false,
+    screens: [
+      {
+        file: "05-rise-points.png",
+        label: "Rise Points",
+        alt: "Rise Points progress — recognition without becoming a scoreboard",
+      },
+      {
+        file: "06-resources.png",
+        label: "Resource Stack",
+        alt: "Resource Stack — personalized support with a clear next step",
+      },
+    ],
+  },
+];
 
 function Reveal({ children, className = "", delay = 0 }) {
   const reduceMotion = useReducedMotion();
@@ -34,180 +96,124 @@ function Reveal({ children, className = "", delay = 0 }) {
   );
 }
 
-function Frame({ path, alt, width, height, className = "", priority = false }) {
+function Phone({ file, alt, label, delay = 0, shift = false, priority = false }) {
   return (
-    <figure
-      className={`overflow-hidden border bg-white ${className}`}
-      style={{ borderColor: R.line }}
+    <Reveal
+      delay={delay}
+      className={`${PHONE} shrink-0 ${shift ? PHONE_STAGGER : ""}`}
     >
-      <img
-        src={src(path)}
-        alt={alt}
-        width={width}
-        height={height}
-        loading={priority ? "eager" : "lazy"}
-        decoding="async"
-        draggable={false}
-        className="mx-auto block h-auto w-full object-contain"
-      />
-    </figure>
+      <p
+        className={`${LABEL_GAP} text-left font-mono text-[10px] uppercase tracking-[0.18em]`}
+        style={{ color: R.mute }}
+      >
+        {label}
+      </p>
+      <figure className="m-0 w-full">
+        <img
+          src={`${ROOT}/${file}`}
+          alt={alt}
+          width={852}
+          height={1846}
+          loading={priority ? "eager" : "lazy"}
+          decoding="async"
+          draggable={false}
+          className="block h-auto w-full object-contain"
+        />
+      </figure>
+    </Reveal>
+  );
+}
+
+function Moment({ moment, priority = false }) {
+  const copy = (
+    <Reveal className="relative z-[1] w-full max-w-sm">
+      <p
+        className="font-mono text-[11px] uppercase tracking-[0.2em]"
+        style={{ color: R.ink }}
+      >
+        {moment.id}
+      </p>
+      <h3
+        className="mt-4 font-display text-[clamp(1.55rem,2.8vw,2.15rem)] font-semibold leading-[1.15]"
+        style={{ color: R.ink }}
+      >
+        {moment.title}
+      </h3>
+      <p className="mt-4 text-base leading-relaxed" style={{ color: R.mute }}>
+        {moment.body}
+      </p>
+    </Reveal>
+  );
+
+  const phones = (
+    <div
+      className={`relative z-[1] flex w-full flex-col items-center sm:flex-row sm:items-start sm:justify-start ${PHONE_GAP}`}
+    >
+      <Phone {...moment.screens[0]} delay={0.04} priority={priority} />
+      <Phone {...moment.screens[1]} delay={0.12} shift priority={priority} />
+    </div>
+  );
+
+  return (
+    <div className="relative min-w-0 overflow-visible py-4 sm:py-6 lg:py-8">
+      <span
+        aria-hidden
+        className="pointer-events-none absolute -left-1 top-6 z-0 select-none font-display text-[clamp(6.5rem,12vw,10.5rem)] font-semibold leading-none tracking-tight opacity-[0.035] sm:top-4 lg:left-0 lg:top-1/2 lg:-translate-y-1/2"
+        style={{ color: R.ink }}
+      >
+        {moment.id}
+      </span>
+
+      <div
+        className={`relative z-[1] grid items-start gap-8 sm:gap-9 lg:items-center lg:gap-10 xl:gap-12 ${
+          moment.reverse
+            ? "lg:grid-cols-[minmax(0,1fr)_minmax(15rem,17.5rem)]"
+            : "lg:grid-cols-[minmax(15rem,17.5rem)_minmax(0,1fr)]"
+        }`}
+      >
+        <div
+          className={
+            moment.reverse
+              ? "lg:order-2 lg:self-center"
+              : "lg:order-1 lg:self-center"
+          }
+        >
+          {copy}
+        </div>
+        <div className={moment.reverse ? "lg:order-1" : "lg:order-2"}>
+          {phones}
+        </div>
+      </div>
+    </div>
   );
 }
 
 /**
- * Curated high-fidelity showcase — 6 screens, AI Intervention as the climax.
- * Mobile paths: 05.xxM · Tablet paths: 05.xxT
+ * Finalized high-fidelity showcase — 6 screens as 3 editorial moments.
  */
 export default function RiseHighFi() {
   return (
-    <div className="min-w-0">
-      {/* Hero — AI Intervention / Student Control */}
-      <Reveal className="mx-auto max-w-[28rem] lg:max-w-[32rem]">
-        <p
-          className="mb-4 text-center font-mono text-[10px] uppercase tracking-[0.2em]"
-          style={{ color: R.mute }}
-        >
-          AI Intervention · Student Control
-        </p>
-        <Frame
-          path="05.08M/AI Intervention/Student Control.png"
-          alt="Rise AI intervention — a pause before Best Buy, with review alternatives, continue anyway, and cancel purchase"
-          width={780}
-          height={1688}
-          priority
-          className="shadow-[0_24px_60px_-28px_rgba(20,24,31,0.35)]"
-        />
-      </Reveal>
+    <div className="min-w-0 space-y-16 sm:space-y-20 lg:space-y-24">
+      {MOMENTS.map((moment, i) => (
+        <Moment key={moment.id} moment={moment} priority={i === 0} />
+      ))}
 
-      {/* Responsive pair — AI tablet + note (desktop/tablet only; mobile keeps the phone hero) */}
-      <div className="mx-auto mt-14 hidden max-w-[1100px] items-end gap-8 md:grid lg:mt-20 lg:grid-cols-12 lg:gap-10">
-        <Reveal className="lg:col-span-7" delay={0.04}>
-          <Frame
-            path="05.08T/AI Intervention/Student Control.png"
-            alt="Rise AI intervention on tablet — consequence explained before the student chooses"
-            width={2048}
-            height={1536}
-          />
-        </Reveal>
-        <Reveal className="lg:col-span-5 lg:pb-6" delay={0.08}>
-          <p
-            className="max-w-sm font-display text-xl font-semibold leading-snug sm:text-2xl"
-            style={{ color: R.ink }}
-          >
-            Guidance appears while the decision can still change.
-          </p>
-          <p className="mt-4 max-w-sm text-sm leading-relaxed" style={{ color: R.mute }}>
-            The interface explains the consequence, offers an alternative, and leaves continue and cancel visible.
-          </p>
-        </Reveal>
-      </div>
-
-      {/* Home + Foundation */}
-      <div className="relative mx-auto mt-16 max-w-[920px] lg:mt-24">
-        <Reveal className="grid items-end gap-6 sm:grid-cols-2 sm:gap-8 lg:gap-10">
-          <div>
-            <p
-              className="mb-3 font-mono text-[10px] uppercase tracking-[0.18em]"
-              style={{ color: R.mute }}
-            >
-              Dashboard
-            </p>
-            <Frame
-              path="05.05M/Dashboard/Home.png"
-              alt="Rise home dashboard — next action, credit health, and progress"
-              width={780}
-              height={1688}
-            />
-          </div>
-          <div className="sm:translate-y-8 lg:translate-y-12">
-            <p
-              className="mb-3 font-mono text-[10px] uppercase tracking-[0.18em]"
-              style={{ color: R.mute }}
-            >
-              Foundation Card
-            </p>
-            <Frame
-              path="05.06M/Foundation Card/Detail.png"
-              alt="Foundation Card detail — starting point and card status"
-              width={780}
-              height={1688}
-            />
-          </div>
-        </Reveal>
-      </div>
-
-      {/* Purchase + Progress, slight overlap on desktop */}
-      <div className="relative mx-auto mt-16 max-w-[980px] lg:mt-28">
-        <div className="grid items-start gap-6 sm:grid-cols-2 lg:gap-0">
-          <Reveal className="relative z-[1] lg:max-w-[22rem] lg:justify-self-start">
-            <p
-              className="mb-3 font-mono text-[10px] uppercase tracking-[0.18em]"
-              style={{ color: R.mute }}
-            >
-              Purchase
-            </p>
-            <Frame
-              path="05.07M/Purchase/Select Merchant.png"
-              alt="Select merchant — purchase flow before confirmation"
-              width={780}
-              height={1688}
-              className="shadow-[0_18px_40px_-24px_rgba(20,24,31,0.3)]"
-            />
-          </Reveal>
-          <Reveal
-            className="relative z-[2] sm:-mt-4 lg:-ml-10 lg:mt-16 lg:max-w-[22rem] lg:justify-self-end"
-            delay={0.06}
-          >
-            <p
-              className="mb-3 font-mono text-[10px] uppercase tracking-[0.18em]"
-              style={{ color: R.mute }}
-            >
-              Rise Points
-            </p>
-            <Frame
-              path="05.09M/Rise Points/Progress.png"
-              alt="Rise Points progress — recognition without becoming a scoreboard"
-              width={780}
-              height={1688}
-              className="shadow-[0_18px_40px_-24px_rgba(20,24,31,0.3)]"
-            />
-          </Reveal>
-        </div>
-      </div>
-
-      {/* Resource Stack */}
-      <Reveal className="mx-auto mt-16 max-w-[26rem] lg:mt-24 lg:max-w-[28rem]">
-        <p
-          className="mb-3 text-center font-mono text-[10px] uppercase tracking-[0.18em]"
-          style={{ color: R.mute }}
-        >
-          Resource Stack
-        </p>
-        <Frame
-          path="05.10M/Resource Stack/Default.png"
-          alt="Resource Stack — personalized support with official-source handoff"
-          width={780}
-          height={1688}
-        />
-      </Reveal>
-
-      {/* Figma CTA */}
-      <div className="mx-auto mt-16 max-w-xl border-t pt-10 text-center lg:mt-20" style={{ borderColor: R.line }}>
+      <div
+        className="mx-auto max-w-xl border-t pt-10 text-center"
+        style={{ borderColor: R.line }}
+      >
         <a
-          href="https://www.figma.com/design/uW1I6lQcPOtBQZ3BZemPPe/Rise-by-Synchrony---highfi-screens?node-id=142-2&p=f&t=KiaoaEYNlai5RDQd-0"
+          href={FIGMA_URL}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#14181F]"
           style={{ color: R.ink }}
         >
           <span className="border-b pb-0.5" style={{ borderColor: R.yellow }}>
-            View all high-fidelity screens in Figma
+            Explore all high-fidelity screens in Figma
           </span>
           <span aria-hidden>↗</span>
         </a>
-        <p className="mx-auto mt-4 max-w-sm text-sm leading-relaxed" style={{ color: R.mute }}>
-          Explore the complete responsive screen set and product states in Figma.
-        </p>
       </div>
     </div>
   );

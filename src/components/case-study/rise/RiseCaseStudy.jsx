@@ -653,7 +653,7 @@ export default function RiseCaseStudy() {
             </p>
           </Reveal>
         </Shell>
-        <div className="mx-auto mt-12 w-[min(100%,95vw)] max-w-[1200px] px-4 sm:mt-16 sm:px-6 lg:mt-20 lg:px-8">
+        <div className="mx-auto mt-12 w-[min(100%,96vw)] max-w-[1360px] px-4 sm:mt-16 sm:px-6 lg:mt-20 lg:px-8">
           <RiseHighFi />
         </div>
       </section>
