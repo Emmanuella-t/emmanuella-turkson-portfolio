@@ -1,38 +1,76 @@
-import { useEffect } from "react";
+import { useLayoutEffect, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
+function disableBrowserScrollRestoration() {
+  if (typeof window === "undefined") return;
+  if ("scrollRestoration" in window.history) {
+    window.history.scrollRestoration = "manual";
+  }
+}
+
+/** Instant jump to the top of the document (no smooth scrolling). */
+function scrollWindowToTop() {
+  if (typeof window === "undefined") return;
+
+  const topLeft = { top: 0, left: 0 };
+
+  try {
+    window.scrollTo({ ...topLeft, behavior: "instant" });
+  } catch {
+    window.scrollTo(topLeft.top, topLeft.left);
+  }
+
+  // Fallback for engines that ignore window.scrollTo in some layouts.
+  if (typeof document !== "undefined") {
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  }
+}
+
+function scrollToHash(hash) {
+  const id = decodeURIComponent(String(hash || "").replace(/^#/, ""));
+  if (!id || typeof document === "undefined") return false;
+  const el = document.getElementById(id);
+  if (!el) return false;
+  el.scrollIntoView();
+  return true;
+}
+
+// Run as early as this module loads so the browser does not restore mid-page
+// scroll before the first React effect.
+disableBrowserScrollRestoration();
+
 /**
- * Scrolls to the top on every route pathname change.
- * Same-page hash/anchor links are left alone so intentional section jumps still work.
+ * Global route scroll restoration for the whole portfolio.
+ * Pathname changes always open at the top. Hash links still jump to sections.
  */
 export default function ScrollToTop() {
   const { pathname, hash } = useLocation();
 
-  useEffect(() => {
-    if (typeof window === "undefined" || !("scrollRestoration" in window.history)) {
-      return undefined;
-    }
-    const previous = window.history.scrollRestoration;
-    window.history.scrollRestoration = "manual";
-    return () => {
-      window.history.scrollRestoration = previous;
-    };
+  useLayoutEffect(() => {
+    disableBrowserScrollRestoration();
   }, []);
 
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    // Preserve intentional in-page anchors (e.g. /work#projects).
+  // Before paint: correct the scroll position as soon as the route updates.
+  useLayoutEffect(() => {
     if (hash) {
-      const id = decodeURIComponent(hash.replace(/^#/, ""));
-      if (!id) return;
-      requestAnimationFrame(() => {
-        document.getElementById(id)?.scrollIntoView();
-      });
+      // Same-page / cross-page anchors — do not force top.
+      scrollToHash(hash);
       return;
     }
+    scrollWindowToTop();
+  }, [pathname, hash]);
 
-    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  // After paint: catch late browser restoration or layout shifts, then retry hash.
+  useEffect(() => {
+    if (hash) {
+      const id = window.setTimeout(() => scrollToHash(hash), 0);
+      return () => window.clearTimeout(id);
+    }
+
+    scrollWindowToTop();
+    const id = window.requestAnimationFrame(() => scrollWindowToTop());
+    return () => window.cancelAnimationFrame(id);
   }, [pathname, hash]);
 
   return null;
