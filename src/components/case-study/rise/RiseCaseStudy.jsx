@@ -213,32 +213,32 @@ export default function RiseCaseStudy() {
         </Shell>
       </section>
 
-      {/* 02 First consequential decision */}
+      {/* 02 The problem */}
       <section className="py-20 sm:py-28">
-        <Shell>
-          <Reveal>
-            <Eyebrow>02 — The first consequential decision</Eyebrow>
-            <h2 className="mt-5 max-w-3xl font-display text-[clamp(2.2rem,5vw,4rem)] font-semibold leading-[1.02]">
+        <Shell className="grid items-center gap-10 sm:gap-12 lg:grid-cols-12 lg:gap-8 xl:gap-10">
+          <Reveal className="order-2 lg:order-1 lg:col-span-5 lg:self-center lg:pt-2 xl:-mt-1" delay={0.06}>
+            <figure className="m-0 mx-auto w-full max-w-[22rem] sm:max-w-[26rem] lg:mx-0 lg:max-w-none">
+              <img
+                src={`${ASSETS}/02_student_problem/new_problem_image.png`}
+                alt="Student weighing a credit decision — phone, card, and the choices that follow"
+                width={1122}
+                height={1402}
+                loading="lazy"
+                decoding="async"
+                className="h-auto w-full object-contain"
+              />
+            </figure>
+          </Reveal>
+          <Reveal className="order-1 lg:order-2 lg:col-span-7 lg:pl-2 xl:pl-4 lg:self-center">
+            <Eyebrow>02 — The Problem</Eyebrow>
+            <h2 className="mt-5 max-w-xl font-display text-[clamp(2.2rem,5vw,4rem)] font-semibold leading-[1.02]">
               The most important credit lesson may arrive a few seconds too late.
             </h2>
-          </Reveal>
-          <Reveal className="mt-8 max-w-2xl" delay={0.05}>
-            <p className="text-lg leading-relaxed" style={{ color: R.mute }}>
+            <p className="mt-8 max-w-lg text-lg leading-relaxed" style={{ color: R.mute }}>
               Many students begin using credit before they fully understand utilization, balances, payment timing, delayed consequences, or long-term credit health. The important moment is often not after something has gone wrong. It is immediately before the decision.
             </p>
           </Reveal>
         </Shell>
-        <Reveal className="mx-auto mt-12 w-full max-w-[1536px] px-5 sm:px-8">
-          <img
-            src={`${ASSETS}/02_student_problem/rise-campus-student-phone.jpg`}
-            alt="College student on campus holding a phone displaying the Rise experience"
-            width={3072}
-            height={2048}
-            loading="lazy"
-            decoding="async"
-            className="h-auto w-full object-cover"
-          />
-        </Reveal>
       </section>
 
       {/* 03 The gap */}
