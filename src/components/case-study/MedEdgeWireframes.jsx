@@ -20,7 +20,7 @@ const stagger = {
 function WirePlate({ children, className = "" }) {
   return (
     <div
-      className={`overflow-hidden rounded-sm bg-[#E8ECF2] ${className}`}
+      className={`overflow-hidden rounded-sm bg-[#DCE8EB] ${className}`}
     >
       {children}
     </div>

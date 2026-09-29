@@ -17,7 +17,7 @@ const DEVICES = {
     floatDuration: 6.5,
     floatDelay: 0.15,
     shadow:
-      "drop-shadow(0 28px 40px rgba(0, 20, 60, 0.45)) drop-shadow(0 0 24px rgba(37, 99, 235, 0.22))",
+      "drop-shadow(0 28px 40px rgba(9, 38, 58, 0.45)) drop-shadow(0 0 20px rgba(14, 168, 167, 0.12))",
   },
   tabletAi: {
     src: "/case-studies/mededge-hero-tablet-ai.png",
@@ -30,7 +30,7 @@ const DEVICES = {
     floatDuration: 7.2,
     floatDelay: 0.55,
     shadow:
-      "drop-shadow(0 22px 28px rgba(0, 20, 60, 0.4)) drop-shadow(0 0 18px rgba(37, 99, 235, 0.2))",
+      "drop-shadow(0 22px 28px rgba(9, 38, 58, 0.4)) drop-shadow(0 0 16px rgba(14, 168, 167, 0.1))",
   },
   tabletPatient: {
     src: "/case-studies/mededge-hero-tablet-patient.png",
@@ -43,7 +43,7 @@ const DEVICES = {
     floatDuration: 8,
     floatDelay: 1.1,
     shadow:
-      "drop-shadow(0 22px 28px rgba(0, 20, 60, 0.4)) drop-shadow(0 0 18px rgba(37, 99, 235, 0.2))",
+      "drop-shadow(0 22px 28px rgba(9, 38, 58, 0.4)) drop-shadow(0 0 16px rgba(14, 168, 167, 0.1))",
   },
 };
 
@@ -105,7 +105,7 @@ function FloatingDevice({ config, delay, reduceMotion }) {
 
 /**
  * Cinematic MedEdge case-study hero — three layered transparent devices
- * on a navy-to-electric-blue field with editorial left copy.
+ * on a Deep Navy field with restrained Clinical Teal accents.
  */
 export default function MedEdgeHero({
   eyebrow = "UI/UX CASE STUDY",
@@ -119,25 +119,25 @@ export default function MedEdgeHero({
   const edge = match ? match[2] : "";
 
   return (
-    <section className="relative min-h-[100vh] overflow-hidden bg-[#06102A]">
+    <section className="relative min-h-[100vh] overflow-hidden bg-[#09263A]">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse 70% 60% at 72% 48%, rgba(37,99,235,0.45) 0%, transparent 58%), linear-gradient(135deg, #040B1C 0%, #0A1A3A 42%, #1238A0 100%)",
+            "radial-gradient(ellipse 55% 50% at 74% 46%, rgba(14,168,167,0.14) 0%, transparent 62%), linear-gradient(160deg, #071C2C 0%, #09263A 48%, #0B2F3F 100%)",
         }}
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute right-[8%] top-[18%] h-[70%] w-[55%] rounded-full bg-[radial-gradient(circle,rgba(96,165,250,0.28)_0%,transparent_68%)] blur-3xl"
+        className="pointer-events-none absolute right-[10%] top-[22%] h-[55%] w-[48%] rounded-full bg-[radial-gradient(circle,rgba(47,207,174,0.1)_0%,transparent_70%)] blur-3xl"
       />
 
       <div className="relative z-10 mx-auto flex min-h-[100vh] w-full max-w-7xl flex-col justify-center gap-10 overflow-visible px-4 py-16 sm:px-6 lg:flex-row lg:items-center lg:gap-8 lg:px-8 lg:py-20">
         {/* Left copy ~38% */}
         <div className="w-full shrink-0 lg:w-[38%]">
           <motion.p
-            className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#93C5FD]"
+            className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#7FCFCD]"
             initial={reduceMotion ? false : { opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, ease: EASE }}
@@ -152,11 +152,11 @@ export default function MedEdgeHero({
             transition={{ duration: 0.9, delay: 0.08, ease: EASE }}
           >
             <span className="text-white">{med}</span>
-            {edge ? <span className="text-[#3B82F6]">{edge}</span> : null}
+            {edge ? <span className="text-[#0EA8A7]">{edge}</span> : null}
           </motion.h1>
 
           <motion.p
-            className="mt-5 max-w-sm font-body text-lg leading-relaxed text-white/75 sm:text-xl"
+            className="mt-5 max-w-sm font-body text-lg leading-relaxed text-[#DCE8EB]/90 sm:text-xl"
             initial={reduceMotion ? false : { opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.16, ease: EASE }}
@@ -173,7 +173,7 @@ export default function MedEdgeHero({
             {meta.map((item) => (
               <li
                 key={item}
-                className="font-mono text-[11px] uppercase tracking-[0.16em] text-[#93C5FD]/90"
+                className="font-mono text-[11px] uppercase tracking-[0.16em] text-[#7FCFCD]/90"
               >
                 {item}
               </li>

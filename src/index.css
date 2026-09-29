@@ -183,20 +183,30 @@ button:focus-visible {
     --cs-shadow: 0 20px 50px -24px rgba(64, 18, 22, 0.35);
   }
 
-  /* MedEdge brand system — deep navy, cobalt, white, cool-gray (from the hero). */
+  /* MedEdge official product system — navy, teal, mint; scoped via data-cs-theme. */
   [data-cs-theme="mededge"] {
-    --cs-bg: 255 255 255;
-    --cs-alt: 240 244 250;      /* cool gray #F0F4FA */
-    --cs-ink: 10 26 58;         /* deep navy #0A1A3A */
-    --cs-soft: 15 40 90;        /* navy #0F285A */
-    --cs-muted: 37 99 235;      /* cobalt #2563EB */
-    --cs-border: 203 213 225;   /* slate-300 #CBD5E1 */
-    --cs-accent: 37 99 235;     /* cobalt #2563EB */
-    --cs-ink-bg: 6 16 42;       /* hero navy #06102A */
-    --cs-onink: 236 242 255;    /* #ECF2FF */
+    --mededge-navy: #09263a;
+    --mededge-teal: #0ea8a7;
+    --mededge-mint: #2fcfae;
+    --mededge-soft-teal: #7fcfcd;
+    --mededge-coral: #f76c5e;
+    --mededge-amber: #ffb347;
+    --mededge-slate: #6b8190;
+    --mededge-pale: #dce8eb;
+    --mededge-bg: #f7fafa;
+
+    --cs-bg: 247 250 250;       /* Soft Background #F7FAFA */
+    --cs-alt: 255 255 255;      /* White section rhythm */
+    --cs-ink: 9 38 58;          /* Deep Navy #09263A */
+    --cs-soft: 107 129 144;     /* Slate Blue-Gray #6B8190 */
+    --cs-muted: 107 129 144;    /* Slate — metadata / labels */
+    --cs-border: 220 232 235;   /* Pale Blue-Gray #DCE8EB */
+    --cs-accent: 14 168 167;    /* Clinical Teal #0EA8A7 */
+    --cs-ink-bg: 9 38 58;       /* Deep Navy panels */
+    --cs-onink: 255 255 255;    /* White on navy */
     --cs-card: 255 255 255;
 
-    --cs-shadow: 0 26px 60px -30px rgba(2, 20, 60, 0.42);
+    --cs-shadow: 0 26px 60px -30px rgba(9, 38, 58, 0.32);
   }
 }
 

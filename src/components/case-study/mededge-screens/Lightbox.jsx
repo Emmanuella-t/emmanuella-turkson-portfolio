@@ -99,7 +99,7 @@ export default function Lightbox({
         <div
           className={`min-h-0 flex-1 rounded-lg p-2 sm:p-4 ${
             scrollBoard ? "overflow-auto" : "overflow-hidden"
-          } ${isRise ? "bg-[#14161A]" : "bg-[#0B2F46]/40"}`}
+          } ${isRise ? "bg-[#14161A]" : "bg-[#09263A]/40"}`}
         >
           {isSvg ? (
             <img

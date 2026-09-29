@@ -15,9 +15,9 @@ const ICONS = {
   "shield-alert": ShieldAlert,
 };
 
-/** Shared cobalt back face — distinct from card 4's deep-navy front. */
+/** Shared navy back face — aligned with MedEdge Deep Navy, not cobalt. */
 const BACK_FACE =
-  "border-[#60A5FA]/35 bg-[#1D4ED8] text-white";
+  "border-[#0EA8A7]/35 bg-[#09263A] text-white";
 
 const FLIP_EASE = [0.22, 1, 0.36, 1];
 const FLIP_MS = 620;
@@ -192,7 +192,7 @@ function FlipCard({
                 <span
                   className={`inline-flex h-11 w-11 items-center justify-center rounded-xl ${
                     isFinal
-                      ? "bg-cs-accent/25 text-[#93C5FD] ring-1 ring-cs-accent/40"
+                      ? "bg-cs-accent/25 text-[#7FCFCD] ring-1 ring-cs-accent/40"
                       : "bg-cs-alt text-cs-accent ring-1 ring-cs-accent/15"
                   }`}
                 >
@@ -224,7 +224,7 @@ function FlipCard({
                 </p>
                 <p
                   className={`mt-4 font-mono text-[10px] uppercase tracking-[0.16em] ${
-                    isFinal ? "text-[#93C5FD]/70" : "text-cs-muted/80"
+                    isFinal ? "text-[#7FCFCD]/75" : "text-cs-muted/80"
                   }`}
                 >
                   {finePointer ? "Hover for more" : "Tap for more"}
@@ -232,7 +232,7 @@ function FlipCard({
               </div>
             </div>
 
-            {/* Back — shared rich cobalt for all four cards */}
+            {/* Back — Deep Navy for all four cards */}
             <div
               className={`${faceBase} ${BACK_FACE}`}
               style={{
@@ -240,13 +240,13 @@ function FlipCard({
                 backfaceVisibility: "hidden",
                 WebkitBackfaceVisibility: "hidden",
                 boxShadow:
-                  "0 24px 48px -24px rgba(29,78,216,0.55), inset 0 1px 0 rgba(191,219,254,0.28)",
+                  "0 24px 48px -24px rgba(9,38,58,0.55), inset 0 1px 0 rgba(127,207,205,0.22)",
                 backgroundImage:
-                  "linear-gradient(145deg, #2563EB 0%, #1D4ED8 48%, #1E3A8A 100%)",
+                  "linear-gradient(145deg, #0B3148 0%, #09263A 52%, #071C2C 100%)",
               }}
             >
               <div className="flex items-start justify-between gap-3">
-                <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-white/70">
+                <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#7FCFCD]/80">
                   Why it matters
                 </span>
                 <span className="font-mono text-[11px] tabular-nums tracking-[0.2em] text-white/45">
@@ -258,7 +258,7 @@ function FlipCard({
                 <p className="font-body text-base font-semibold leading-snug tracking-tight text-white sm:text-[1.05rem]">
                   {stage.label}
                 </p>
-                <p className="mt-3 text-sm leading-relaxed text-white/90">
+                <p className="mt-3 text-sm leading-relaxed text-[#DCE8EB]/90">
                   {stage.detail || stage.description}
                 </p>
               </div>

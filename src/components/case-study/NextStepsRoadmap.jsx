@@ -2,8 +2,7 @@ import React, { useRef } from "react";
 import { motion, useInView, useReducedMotion } from "framer-motion";
 
 const EASE = [0.22, 1, 0.36, 1];
-const ZOOM_BLUE = "#2D8CFF";
-const CONNECTOR = "rgba(91, 110, 130, 0.5)";
+const CONNECTOR = "rgba(107, 129, 144, 0.5)";
 
 /**
  * Optical scale so the visible 3D tiles feel equally sized despite each
@@ -131,13 +130,13 @@ function CopyBlock({ step, align = "left", maxW = "clamp(215px, 16vw, 260px)" })
       style={{ width: maxW, textAlign: align }}
     >
       <p
-        className="font-mono uppercase"
-        style={{ margin: "0 0 8px", fontSize: 12, letterSpacing: "0.2em", color: ZOOM_BLUE }}
+        className="font-mono uppercase text-cs-accent"
+        style={{ margin: "0 0 8px", fontSize: 12, letterSpacing: "0.2em" }}
       >
         {step.number}
       </p>
       <h3
-        className="roadmap-step-title font-display font-semibold text-[#401216] transition-colors duration-300 group-hover/ms:text-[#2D8CFF]"
+        className="roadmap-step-title font-display font-semibold text-cs-ink transition-colors duration-300 group-hover/ms:text-cs-accent"
         style={{ margin: "0 0 14px", fontSize: "clamp(20px, 1.6vw, 25px)", lineHeight: 1.15 }}
       >
         {step.title}
@@ -159,7 +158,7 @@ function CopyBlock({ step, align = "left", maxW = "clamp(215px, 16vw, 260px)" })
         }}
       >
         {step.items.map((item) => (
-          <li key={item} className="flex gap-2.5 text-[#401216]/75">
+          <li key={item} className="flex gap-2.5 text-cs-ink/75">
             <span
               className="mt-[0.5em] h-1.5 w-1.5 shrink-0 rounded-full"
               style={{ backgroundColor: "rgba(45, 140, 255, 0.7)" }}
@@ -231,9 +230,9 @@ function RoadmapRibbon({ visible, reduceMotion }) {
     >
       <defs>
         <linearGradient id="nsRibbon" x1="0%" y1="100%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#2D8CFF" stopOpacity="0.1" />
-          <stop offset="55%" stopColor="#8BA6C4" stopOpacity="0.16" />
-          <stop offset="100%" stopColor="#2D8CFF" stopOpacity="0.12" />
+          <stop offset="0%" stopColor="rgb(var(--cs-accent))" stopOpacity="0.1" />
+          <stop offset="55%" stopColor="rgb(var(--cs-muted))" stopOpacity="0.16" />
+          <stop offset="100%" stopColor="rgb(var(--cs-accent))" stopOpacity="0.12" />
         </linearGradient>
       </defs>
 
@@ -264,7 +263,7 @@ function RoadmapRibbon({ visible, reduceMotion }) {
       <motion.path
         d={RIBBON_D}
         fill="none"
-        stroke={ZOOM_BLUE}
+        stroke="rgb(var(--cs-accent))"
         strokeWidth="2"
         strokeLinecap="round"
         strokeOpacity="0.3"
@@ -275,7 +274,7 @@ function RoadmapRibbon({ visible, reduceMotion }) {
       {/* subtle upward tip — a natural taper of the path, not an arrow */}
       <motion.path
         d="M 792 74 C 812 48, 832 26, 850 4 C 838 34, 828 60, 832 86 Z"
-        fill={ZOOM_BLUE}
+        fill="rgb(var(--cs-accent))"
         fillOpacity="0.2"
         initial={reduceMotion ? false : { opacity: 0, y: 6 }}
         animate={visible ? { opacity: 1, y: 0 } : { opacity: 0, y: 6 }}
@@ -305,7 +304,7 @@ export default function NextStepsRoadmap({ steps = [] }) {
       <div className="relative md:hidden">
         <div
           aria-hidden
-          className="absolute bottom-6 left-[55px] top-6 w-[2.5px] rounded-full bg-gradient-to-b from-[#2D8CFF]/35 via-[#8BA6C4]/25 to-[#2D8CFF]/12"
+          className="absolute bottom-6 left-[55px] top-6 w-[2.5px] rounded-full bg-gradient-to-b from-cs-accent/35 via-cs-muted/25 to-cs-accent/12"
         />
         <ol className="relative m-0 flex list-none flex-col gap-11 p-0">
           {steps.map((step, i) => (
@@ -338,7 +337,7 @@ export default function NextStepsRoadmap({ steps = [] }) {
       <div className="relative mx-auto hidden max-w-[760px] md:block lg:hidden">
         <div
           aria-hidden
-          className="absolute bottom-8 left-1/2 top-8 w-[3px] -translate-x-1/2 rounded-full bg-gradient-to-b from-[#2D8CFF]/12 via-[#8BA6C4]/22 to-[#2D8CFF]/32"
+          className="absolute bottom-8 left-1/2 top-8 w-[3px] -translate-x-1/2 rounded-full bg-gradient-to-b from-cs-accent/12 via-cs-muted/22 to-cs-accent/32"
         />
         <ol className="relative m-0 flex list-none flex-col gap-12 p-0">
           {steps.map((step, i) => {

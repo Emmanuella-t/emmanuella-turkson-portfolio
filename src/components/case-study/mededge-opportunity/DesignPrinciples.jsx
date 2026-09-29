@@ -34,11 +34,11 @@ export default function DesignPrinciples({ principles = [] }) {
     >
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-y-[12%] right-0 hidden w-14 bg-[#0B2F46] md:block"
+        className="pointer-events-none absolute inset-y-[12%] right-0 hidden w-14 bg-[#09263A] md:block"
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute bottom-0 left-[8%] hidden h-8 w-[28%] bg-[#0B2F46] md:block"
+        className="pointer-events-none absolute bottom-0 left-[8%] hidden h-8 w-[28%] bg-[#09263A] md:block"
       />
 
       <div
