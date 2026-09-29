@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-dom';
 import Layout from '@/components/Layout';
 import PageNotFound from '@/components/PageNotFound';
+import ScrollToTop from '@/components/ScrollToTop';
 
 import Home from '@/sections/pages/Home';
 import Work from '@/sections/pages/Work';
@@ -16,6 +17,7 @@ import CareerMatch from '@/pages/CareerMatch';
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
