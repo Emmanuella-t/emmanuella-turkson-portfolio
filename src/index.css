@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Cormorant+SC:wght@400;600&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Love+Ya+Like+A+Sister&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Cormorant+SC:wght@400;600&family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Love+Ya+Like+A+Sister&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -166,7 +166,8 @@ button:focus-visible {
   /*
    * Case-study design tokens.
    * Channels are space-separated RGB so Tailwind's `cs-*` colors can apply alpha.
-   * Default values reproduce the warm editorial palette (Zoom / Rise / Career Match).
+   * Default values reproduce the warm editorial palette (Rise / Career Match).
+   * Zoom and MedEdge override these under [data-cs-theme].
    */
   :root {
     --cs-bg: 255 255 255;
@@ -225,6 +226,222 @@ button:focus-visible {
   [data-cs-theme="mededge"] .cs-section .cs-display-serif {
     font-family: var(--font-display);
     letter-spacing: -0.02em;
+  }
+}
+
+/*
+ * Zoom Accessibility case study only.
+ * DM Serif Display = storytelling. Inter = product UI.
+ * Does not apply outside [data-cs-theme="zoom"].
+ */
+@layer base {
+  [data-cs-theme="zoom"] {
+    --zoom-blue: #0b5cff;
+    --zoom-bright-blue: #2d8cff;
+    --zoom-light-blue: #6096fc;
+    --zoom-deep-navy: #00053d;
+    --zoom-hero-navy: #06142f;
+    --zoom-midnight-blue: #0a2458;
+    --zoom-soft-blue: #e6f0ff;
+    --zoom-white: #ffffff;
+    --zoom-off-white: #f7f9fc;
+    --zoom-gray: #696b6e;
+    --zoom-live-green: #32d583;
+
+    --font-display: "DM Serif Display", Georgia, serif;
+    --font-body: Inter, system-ui, sans-serif;
+
+    --cs-bg: 255 255 255;
+    --cs-alt: 247 249 252;
+    --cs-ink: 0 5 61;
+    --cs-soft: 105 107 110;
+    --cs-muted: 105 107 110;
+    --cs-border: 214 224 242;
+    --cs-accent: 11 92 255;
+    --cs-ink-bg: 0 5 61;
+    --cs-onink: 255 255 255;
+    --cs-card: 255 255 255;
+    --cs-shadow: 0 16px 36px -28px rgba(0, 5, 61, 0.35);
+  }
+}
+
+@layer utilities {
+  [data-cs-theme="zoom"] {
+    color: var(--zoom-deep-navy);
+  }
+
+  [data-cs-theme="zoom"] .font-mono {
+    font-family: Inter, system-ui, sans-serif;
+  }
+
+  [data-cs-theme="zoom"] > section:first-of-type h1 {
+    font-weight: 400;
+    line-height: 1.05;
+  }
+
+  [data-cs-theme="zoom"] > section:first-of-type .visual-wrapper,
+  [data-cs-theme="zoom"] > section:first-of-type .rounded-2xl {
+    border-radius: 0 !important;
+    box-shadow: none !important;
+  }
+
+  [data-cs-theme="zoom"] .cs-section {
+    padding-block: clamp(4rem, 12vw, 5.5rem) !important;
+  }
+
+  @media (min-width: 640px) {
+    [data-cs-theme="zoom"] .cs-section {
+      padding-block: clamp(5.5rem, 10vw, 7.5rem) !important;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    [data-cs-theme="zoom"] .cs-section {
+      padding-block: clamp(7.5rem, 9vw, 10rem) !important;
+    }
+  }
+
+  [data-cs-theme="zoom"] .section-heading-group > p.font-mono {
+    margin-bottom: 0.85rem;
+    font-family: Inter, system-ui, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--zoom-blue);
+  }
+
+  [data-cs-theme="zoom"] .bg-cs-inkbg .section-heading-group > p.font-mono {
+    color: var(--zoom-light-blue);
+  }
+
+  [data-cs-theme="zoom"] blockquote {
+    font-family: "DM Serif Display", Georgia, serif;
+    font-weight: 400;
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    line-height: 1.15;
+    color: var(--zoom-white);
+  }
+
+  [data-cs-theme="zoom"] .cs-section h2.font-display {
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    font-size: clamp(2rem, 4.2vw, 3.75rem);
+    color: var(--zoom-deep-navy);
+  }
+
+  [data-cs-theme="zoom"] .bg-cs-inkbg h2.font-display,
+  [data-cs-theme="zoom"] .bg-cs-inkbg .font-display {
+    color: var(--zoom-white);
+  }
+
+  [data-cs-theme="zoom"] h3.font-display {
+    font-family: Inter, system-ui, sans-serif;
+    font-weight: 600;
+    font-size: clamp(1.25rem, 1.6vw, 1.5rem);
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: var(--zoom-deep-navy);
+  }
+
+  [data-cs-theme="zoom"] .bg-cs-inkbg h3.font-display {
+    color: var(--zoom-white);
+  }
+
+  [data-cs-theme="zoom"] p.font-display {
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--zoom-blue);
+  }
+
+  [data-cs-theme="zoom"] .section-heading-group p:not(.font-mono):not(:first-child),
+  [data-cs-theme="zoom"] .content-tier > p,
+  [data-cs-theme="zoom"] .content-tier .space-y-4 > p,
+  [data-cs-theme="zoom"] .content-tier .space-y-5 > p,
+  [data-cs-theme="zoom"] .content-tier .space-y-6 > p {
+    max-width: 42rem;
+    font-size: 1.0625rem;
+    line-height: 1.65;
+  }
+
+  [data-cs-theme="zoom"] .bg-cs-inkbg .text-cs-onink\/70,
+  [data-cs-theme="zoom"] .bg-cs-inkbg .text-cs-onink\/80,
+  [data-cs-theme="zoom"] .bg-cs-inkbg .text-cs-onink\/90 {
+    color: var(--zoom-soft-blue);
+  }
+
+  [data-cs-theme="zoom"] .bg-cs-inkbg {
+    background-color: var(--zoom-deep-navy);
+    background-image: radial-gradient(
+      ellipse 55% 45% at 85% 0%,
+      rgba(11, 92, 255, 0.18),
+      transparent 62%
+    );
+  }
+
+  [data-cs-theme="zoom"] .rounded-2xl,
+  [data-cs-theme="zoom"] .rounded-xl,
+  [data-cs-theme="zoom"] .rounded-\[1\.35rem\] {
+    border-radius: 1.25rem;
+    box-shadow: 0 14px 32px -26px rgba(0, 5, 61, 0.28);
+  }
+
+  [data-cs-theme="zoom"] .border-dashed {
+    border-style: solid;
+    border-color: rgba(11, 92, 255, 0.16);
+    background-color: var(--zoom-off-white);
+    box-shadow: none;
+  }
+
+  [data-cs-theme="zoom"] .visual-wrapper {
+    box-shadow: none !important;
+    background: transparent !important;
+  }
+
+  [data-cs-theme="zoom"] figcaption,
+  [data-cs-theme="zoom"] .text-sm {
+    line-height: 1.55;
+  }
+
+  [data-cs-theme="zoom"] a:focus-visible,
+  [data-cs-theme="zoom"] button:focus-visible {
+    outline: 2px solid var(--zoom-blue);
+    outline-offset: 3px;
+  }
+
+  [data-cs-theme="zoom"] a.rounded-full {
+    border-radius: 0.75rem;
+  }
+
+  [data-cs-theme="zoom"] a.rounded-full.bg-cs-inkbg,
+  [data-cs-theme="zoom"] a.rounded-full.bg-cs-soft {
+    background-color: var(--zoom-blue);
+    color: var(--zoom-white);
+  }
+
+  [data-cs-theme="zoom"] a.rounded-full.border {
+    background-color: transparent;
+    color: var(--zoom-deep-navy);
+    border-color: rgba(11, 92, 255, 0.4);
+  }
+
+  [data-cs-theme="zoom"] a.rounded-full.bg-cs-inkbg:hover,
+  [data-cs-theme="zoom"] a.rounded-full.bg-cs-soft:hover {
+    background-color: var(--zoom-midnight-blue);
+    color: var(--zoom-white);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-cs-theme="zoom"],
+  [data-cs-theme="zoom"] *,
+  [data-cs-theme="zoom"] *::before,
+  [data-cs-theme="zoom"] *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 

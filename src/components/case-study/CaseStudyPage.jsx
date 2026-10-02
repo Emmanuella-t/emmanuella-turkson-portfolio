@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { createPageUrl } from "@/utils/routes";
 import { getNextCaseStudy } from "@/data/caseStudies";
@@ -14,6 +14,7 @@ import IterationShowcase from "./IterationShowcase";
 import NextStepsRoadmap from "./NextStepsRoadmap";
 import DemoVideoPlayer from "./DemoVideoPlayer";
 import MedEdgeHero from "./MedEdgeHero";
+import ZoomHero from "./ZoomHero";
 import MedEdgeChallengeFlow from "./MedEdgeChallengeFlow";
 import MedEdgeRole from "./MedEdgeRole";
 import MedEdgeStethoscopeBand from "./MedEdgeStethoscopeBand";
@@ -372,9 +373,12 @@ function GoalColumns({ goals, elevated = false }) {
 }
 
 export default function CaseStudyPage({ study }) {
+  const reduceMotion = useReducedMotion();
   if (!study) return null;
 
   const next = getNextCaseStudy(study.id);
+  const enter =
+    study.id === "zoom" && reduceMotion ? { initial: false } : fadeUp;
   const overview = study.overview || {};
   const themeKey =
     study.theme ||
@@ -407,7 +411,9 @@ export default function CaseStudyPage({ study }) {
       </div>
 
       {/* 1. Hero */}
-      {study.heroShowcase?.variant === "mededge-devices" ? (
+      {study.id === "zoom" ? (
+        <ZoomHero />
+      ) : study.heroShowcase?.variant === "mededge-devices" ? (
         <MedEdgeHero
           eyebrow={study.heroShowcase.eyebrow}
           title={study.heroShowcase.title}
@@ -425,7 +431,7 @@ export default function CaseStudyPage({ study }) {
             ...csShellStyle,
             gap: "clamp(20px, 3vh, 36px)",
           }}
-          {...fadeUp}
+          {...enter}
         >
           <div className="min-w-0" style={{ width: "min(100%, 760px)" }}>
             <p className="mb-2 font-mono text-xs uppercase tracking-[0.18em] text-cs-muted">
@@ -1625,7 +1631,7 @@ export default function CaseStudyPage({ study }) {
               gap: "clamp(36px, 5vh, 56px)",
               overflow: "visible",
             }}
-            {...fadeUp}
+            {...enter}
           >
             <header
               className="section-heading-group min-w-0"

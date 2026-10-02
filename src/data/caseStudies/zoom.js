@@ -1,5 +1,6 @@
 export default {
   id: 'zoom',
+  theme: 'zoom',
   slug: 'ZoomRedesign',
   name: 'ZOOM REDESIGN',
   shortName: 'Zoom Redesign',
